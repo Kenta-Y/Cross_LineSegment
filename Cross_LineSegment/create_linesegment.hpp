@@ -24,5 +24,6 @@ public:
 std::vector<Line_Segment> cleate_line();
 void draw_line(std::vector<Line_Segment> line);
 void draw_intersection(cv::Point2i intersection);
+void draw_LineScanning(int y);
 
 #endif /* create_linesegment_hpp */

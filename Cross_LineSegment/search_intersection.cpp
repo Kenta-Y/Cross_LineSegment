@@ -6,6 +6,7 @@
 //  Copyright © 2016年 KentaYamagishi. All rights reserved.
 //
 
+#define DEMO
 #include "search_intersection.hpp"
 
 struct element nil2;
@@ -85,12 +86,15 @@ void treeInterval(nodeptr p, int x1, int x2, int y){
 
 void sweep(elementptr head, nodeptr root){
     while(head != NULL){
+#ifdef DEMO
+        draw_LineScanning(head->p1.y);
+        cv::waitKey(0);
+#endif
         if(head->p1.y < head->p2.y) insert_point(head->p1);
         else if(head->p1.y > head->p2.y) delete_point(head->p2);
         else{
             if(head->p1.x < head->p2.x) treeInterval(root, head->p1.x, head->p2.x, head->p1.y);
             else                        treeInterval(root, head->p2.x, head->p1.x, head->p1.y);
-            if(head->next != NULL) head = head->next;
         }
         head = head->next;
     }
